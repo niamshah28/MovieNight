@@ -1,6 +1,4 @@
-import java.awt.*;
-
-public class GoodWill {
+public class Titans {
 
     //VARIABLE DECLARATION SECTION
     //Here's where you state which variables you are going to use.
@@ -11,8 +9,7 @@ public class GoodWill {
     public int dy;                    //the speed of the hero in the y direction
     public int width;
     public int height;
-    public boolean isAlive;//a boolean to denote if the hero is alive or dead.
-    public Rectangle hitbox;
+    public boolean isAlive;            //a boolean to denote if the hero is alive or dead.
 
 
     // METHOD DEFINITION SECTION
@@ -23,7 +20,7 @@ public class GoodWill {
 
     //This is a SECOND constructor that takes 3 parameters.  This allows us to specify the hero's name and position when we build it.
     // if you put in a String, an int and an int the program will use this constructor instead of the one above.
-    public GoodWill(int pXpos, int pYpos) {
+    public Titans(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
         dx =1;
@@ -38,25 +35,6 @@ public class GoodWill {
     public void move() {
         xpos = xpos + dx;
         ypos = ypos + dy;
-        if(xpos >= 1000-width){ //Right wall
-            dx = -dx;
-        }
-
-        if(xpos < 0){ // Left wall
-            dx = -dx;
-        }
-
-        if(ypos < 0){ // Top wall
-            dy=-dy;
-        }
-        if (ypos >= 700-height ){ // Bottom wall
-            dy = -dy;
-        }
-
-
-        xpos = xpos + dx;
-        ypos = ypos + dy;
-        hitbox = new Rectangle(xpos, ypos, width, height);
 
     }
 }

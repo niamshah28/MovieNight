@@ -39,14 +39,20 @@ public class BasicGameApp implements Runnable {
    
 	public BufferStrategy bufferStrategy;
 	public Image schoolPic;
-    public Image Background;
+    public Image BackgroundPic;
     public Image GoodPic;
+    public Image TitansPic;
+    public Image DieHardPic;
+    public Image GladPic;
+
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
 	private SchoolTies school;
     private GoodWill Good;
-
+    private Titans Titans;
+    private DieHard DieHard;
+    private Gladiator Glad;
 
    // Main method definition
    // This is the code that runs first and automatically
@@ -68,10 +74,15 @@ public class BasicGameApp implements Runnable {
       //create (construct) the objects needed for the game and load up 
 		schoolPic = Toolkit.getDefaultToolkit().getImage("SchoolTies.jpg");
         GoodPic = Toolkit.getDefaultToolkit().getImage("GoodWill.jpg");
-        Background = Toolkit.getDefaultToolkit().getImage("TV.jpg");//load the picture
+        BackgroundPic = Toolkit.getDefaultToolkit().getImage("TV.jpg");//load the picture
+        TitansPic = Toolkit.getDefaultToolkit().getImage("Titans.jpg");
+        DieHardPic = Toolkit.getDefaultToolkit().getImage("DieHard.jpg");
+        GladPic = Toolkit.getDefaultToolkit().getImage("Gladiator.jpg");
 		school = new SchoolTies(10,100);
         Good = new GoodWill(10,200);
-
+        Titans = new Titans(10,300);
+        DieHard = new DieHard(10,400);
+        Glad = new Gladiator(10,500);
 
 	}// BasicGameApp()
 
@@ -100,6 +111,9 @@ public class BasicGameApp implements Runnable {
       //calls the move( ) code in the objects
 		school.move();
         Good.move();
+        Titans.move();
+        DieHard.move();
+        Glad.move();
 
 	}
 	
@@ -150,10 +164,12 @@ public class BasicGameApp implements Runnable {
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 
       //draw the image of the astronaut
+        g.drawImage(BackgroundPic, 0, 0, WIDTH, HEIGHT, null);
 		g.drawImage(schoolPic, school.xpos, school.ypos, school.width, school.height, null);
         g.drawImage(GoodPic, Good.xpos, Good.ypos, Good.width, Good.height, null);
-       // g.drawImage(Background, school.xpos, school.ypos, school.width, school.height, null);
-
+        g.drawImage(TitansPic, Titans.xpos, Titans.ypos, Titans.width, Titans.height, null);
+        g.drawImage(DieHardPic, DieHard.xpos, DieHard.ypos, DieHard.width, DieHard.height, null);
+        g.drawImage(GladPic, Glad.xpos, Glad.ypos, Glad.width, Glad.height, null);
 
 		g.dispose();
 
