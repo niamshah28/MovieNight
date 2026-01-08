@@ -40,10 +40,12 @@ public class BasicGameApp implements Runnable {
 	public BufferStrategy bufferStrategy;
 	public Image schoolPic;
     public Image Background;
+    public Image GoodPic;
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
 	private SchoolTies school;
+    private GoodWill Good;
 
 
    // Main method definition
@@ -65,8 +67,10 @@ public class BasicGameApp implements Runnable {
       //variable and objects
       //create (construct) the objects needed for the game and load up 
 		schoolPic = Toolkit.getDefaultToolkit().getImage("SchoolTies.jpg");
+        GoodPic = Toolkit.getDefaultToolkit().getImage("GoodWill.jpg");
         Background = Toolkit.getDefaultToolkit().getImage("TV.jpg");//load the picture
 		school = new SchoolTies(10,100);
+        Good = new GoodWill(10,200);
 
 
 	}// BasicGameApp()
@@ -95,6 +99,7 @@ public class BasicGameApp implements Runnable {
 	{
       //calls the move( ) code in the objects
 		school.move();
+        Good.move();
 
 	}
 	
@@ -146,6 +151,9 @@ public class BasicGameApp implements Runnable {
 
       //draw the image of the astronaut
 		g.drawImage(schoolPic, school.xpos, school.ypos, school.width, school.height, null);
+        g.drawImage(GoodPic, Good.xpos, Good.ypos, Good.width, Good.height, null);
+       // g.drawImage(Background, school.xpos, school.ypos, school.width, school.height, null);
+
 
 		g.dispose();
 
