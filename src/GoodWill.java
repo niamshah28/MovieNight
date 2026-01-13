@@ -26,8 +26,8 @@ public class GoodWill {
     public GoodWill(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =1;
-        dy =0;
+        dx =5;
+        dy =4;
         width = 60;
         height = 80;
         isAlive = true;

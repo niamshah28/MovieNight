@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class DieHard {
 
     //VARIABLE DECLARATION SECTION
@@ -9,7 +11,8 @@ public class DieHard {
     public int dy;                    //the speed of the hero in the y direction
     public int width;
     public int height;
-    public boolean isAlive;            //a boolean to denote if the hero is alive or dead.
+    public boolean isAlive;//a boolean to denote if the hero is alive or dead.
+    public Rectangle hitbox;
 
 
     // METHOD DEFINITION SECTION
@@ -23,8 +26,8 @@ public class DieHard {
     public DieHard(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =1;
-        dy =0;
+        dx =2;
+        dy =3;
         width = 60;
         height = 80;
         isAlive = true;
@@ -36,5 +39,27 @@ public class DieHard {
         xpos = xpos + dx;
         ypos = ypos + dy;
 
+        if(xpos >= 1000-width){ //Right wall
+            dx = -dx;
+        }
+
+        if(xpos < 0){ // Left wall
+            dx = -dx;
+        }
+
+        if(ypos < 0){ // Top wall
+            dy=-dy;
+        }
+        if (ypos >= 700-height ){ // Bottom wall
+            dy = -dy;
+        }
+
+
+        xpos = xpos + dx;
+        ypos = ypos + dy;
+        hitbox = new Rectangle(xpos, ypos, width, height);
+
     }
-}
+
+    }
+

@@ -44,6 +44,11 @@ public class BasicGameApp implements Runnable {
     public Image TitansPic;
     public Image DieHardPic;
     public Image GladPic;
+    public Image cowardsPic;
+    public Image welcomePic;
+    public Image EntertainedPic;
+    public Image MATHPic;
+    public Image dancePic;
 
 
    //Declare the objects used in the program
@@ -54,9 +59,11 @@ public class BasicGameApp implements Runnable {
     private DieHard DieHard;
     private Gladiator Glad;
 
+
+
    // Main method definition
-   // This is the code that runs first and automatically
-	public static void main(String[] args) {
+   // This is the code that runs first and automatically public
+    static void main(String[] args) {
 		BasicGameApp ex = new BasicGameApp();   //creates a new instance of the game
 		new Thread(ex).start();                 //creates a threads & starts up the code in the run( ) method  
 	}
@@ -74,10 +81,15 @@ public class BasicGameApp implements Runnable {
       //create (construct) the objects needed for the game and load up 
 		schoolPic = Toolkit.getDefaultToolkit().getImage("SchoolTies.jpg");
         GoodPic = Toolkit.getDefaultToolkit().getImage("GoodWill.jpg");
-        BackgroundPic = Toolkit.getDefaultToolkit().getImage("TV.jpg");//load the picture
+        //BackgroundPic = Toolkit.getDefaultToolkit().getImage("TV.jpg");//load the picture
         TitansPic = Toolkit.getDefaultToolkit().getImage("Titans.jpg");
         DieHardPic = Toolkit.getDefaultToolkit().getImage("DieHard.jpg");
         GladPic = Toolkit.getDefaultToolkit().getImage("Gladiator.jpg");
+        //cowardsPic = Toolkit.getDefaultToolkit().getImage("cowards.gif");
+        welcomePic = Toolkit.getDefaultToolkit().getImage("welcome.gif");
+        //EntertainedPic = Toolkit.getDefaultToolkit().getImage("Entertained.gif");
+        //MATHPic = Toolkit.getDefaultToolkit().getImage("MATH.gif");
+        //dancePic = Toolkit.getDefaultToolkit().getImage("dance.gif");
 		school = new SchoolTies(10,100);
         Good = new GoodWill(10,200);
         Titans = new Titans(10,300);
@@ -114,8 +126,47 @@ public class BasicGameApp implements Runnable {
         Titans.move();
         DieHard.move();
         Glad.move();
+        crashing();
 
 	}
+    public void crashing(){
+        // check to see if my astros crash into each other
+        if(school.hitbox.intersects(Good.hitbox)){
+            school.dx = -school.dx;
+            Good.dx = -Good.dx;
+            school.dy = -school.dy;
+            Good.dy = -Good.dy;
+            Good.isAlive = false;
+        }
+        if (school.hitbox.intersects(Titans.hitbox)){
+            school.dx = -school.dx;
+            Titans.dx = -Titans.dx;
+            school.dy = -school.dy;
+            Titans.dy = -Titans.dy;
+            Good.isAlive = false;
+        }
+        if (school.hitbox.intersects(Glad.hitbox)) {
+            school.dx = -school.dx;
+            Glad.dx = -Glad.dx;
+            school.dy = -school.dy;
+            Glad.dy = -Glad.dy;
+            Good.isAlive = false;
+        }
+        if (school.hitbox.intersects(DieHard.hitbox)) {
+            school.dx = -school.dx;
+            DieHard.dx = -DieHard.dx;
+            school.dy = -school.dy;
+            DieHard.dy = -DieHard.dy;
+            Good.isAlive = false;
+        }
+        if (Good.hitbox.intersects(Titans.hitbox)) {
+            Good.dx = -Good.dx;
+            Titans.dx = -Titans.dx;
+            Good.dy = -Good.dy;
+            Titans.dy = -Titans.dy;
+            Good.isAlive = false;
+        }
+    }
 	
    //Pauses or sleeps the computer for the amount specified in milliseconds
    public void pause(int time ){
@@ -164,7 +215,12 @@ public class BasicGameApp implements Runnable {
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 
       //draw the image of the astronaut
-        g.drawImage(BackgroundPic, 0, 0, WIDTH, HEIGHT, null);
+       // g.drawImage(BackgroundPic, 0, 0, WIDTH, HEIGHT, null);
+        //g.drawImage(cowardsPic, 0, 0, WIDTH, HEIGHT, null);
+        g.drawImage(welcomePic, 0, 0, WIDTH, HEIGHT, null);
+        //g.drawImage(EntertainedPic, 0, 0, WIDTH, HEIGHT, null);
+        //g.drawImage(MATHPic, 0, 0, WIDTH, HEIGHT, null);
+        //g.drawImage(dancePic, 0, 0, WIDTH, HEIGHT, null);
 		g.drawImage(schoolPic, school.xpos, school.ypos, school.width, school.height, null);
         g.drawImage(GoodPic, Good.xpos, Good.ypos, Good.width, Good.height, null);
         g.drawImage(TitansPic, Titans.xpos, Titans.ypos, Titans.width, Titans.height, null);

@@ -30,7 +30,7 @@ public class SchoolTies {
         xpos = pXpos;
         ypos = pYpos;
         dx =1;
-        dy =0;
+        dy =5;
         width = 60;
         height = 80;
         isAlive = true;
@@ -61,7 +61,7 @@ public class SchoolTies {
         xpos = xpos + dx;
         ypos = ypos + dy;
         hitbox = new Rectangle(xpos, ypos, width, height);
- 
+
     }
 
 
