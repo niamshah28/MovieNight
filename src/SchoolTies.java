@@ -16,6 +16,7 @@ public class SchoolTies {
     public int height;
     public boolean isAlive;//a boolean to denote if the hero is alive or dead.
     public Rectangle hitbox;
+    public int health;
 
 
     // METHOD DEFINITION SECTION
@@ -34,7 +35,6 @@ public class SchoolTies {
         width = 60;
         height = 80;
         isAlive = true;
- 
     } // constructor
 
     //The move method.  Everytime this is run (or "called") the hero's x position and y position change by dx and dy

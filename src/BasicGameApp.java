@@ -49,6 +49,7 @@ public class BasicGameApp implements Runnable {
     public Image EntertainedPic;
     public Image MATHPic;
     public Image dancePic;
+    public int coinflip;
 
 
    //Declare the objects used in the program
@@ -136,7 +137,13 @@ public class BasicGameApp implements Runnable {
             Good.dx = -Good.dx;
             school.dy = -school.dy;
             Good.dy = -Good.dy;
-            Good.isAlive = false;
+            coinflip = (int) (Math.random() * 2) + 1;
+            if(coinflip == 1) {
+                school.isAlive = false;
+            }
+            if(coinflip == 2) {
+                Good.isAlive = false;
+            }
         }
         if (school.hitbox.intersects(Titans.hitbox)){
             school.dx = -school.dx;
@@ -257,11 +264,21 @@ public class BasicGameApp implements Runnable {
         //g.drawImage(EntertainedPic, 0, 0, WIDTH, HEIGHT, null);
         //g.drawImage(MATHPic, 0, 0, WIDTH, HEIGHT, null);
         //g.drawImage(dancePic, 0, 0, WIDTH, HEIGHT, null);
+        if(school.isAlive == true){
 		g.drawImage(schoolPic, school.xpos, school.ypos, school.width, school.height, null);
-        g.drawImage(GoodPic, Good.xpos, Good.ypos, Good.width, Good.height, null);
-        g.drawImage(TitansPic, Titans.xpos, Titans.ypos, Titans.width, Titans.height, null);
-        g.drawImage(DieHardPic, DieHard.xpos, DieHard.ypos, DieHard.width, DieHard.height, null);
-        g.drawImage(GladPic, Glad.xpos, Glad.ypos, Glad.width, Glad.height, null);
+        }
+        if(Good.isAlive == true) {
+            g.drawImage(GoodPic, Good.xpos, Good.ypos, Good.width, Good.height, null);
+        }
+        if(Titans.isAlive == true) {
+            g.drawImage(TitansPic, Titans.xpos, Titans.ypos, Titans.width, Titans.height, null);
+        }
+        if(DieHard.isAlive == true) {
+            g.drawImage(DieHardPic, DieHard.xpos, DieHard.ypos, DieHard.width, DieHard.height, null);
+        }
+        if(Glad.isAlive == true) {
+            g.drawImage(GladPic, Glad.xpos, Glad.ypos, Glad.width, Glad.height, null);
+        }
 
 		g.dispose();
 
