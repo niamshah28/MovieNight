@@ -166,6 +166,42 @@ public class BasicGameApp implements Runnable {
             Titans.dy = -Titans.dy;
             Good.isAlive = false;
         }
+        if (Good.hitbox.intersects(Glad.hitbox)) {
+            Good.dx = -Good.dx;
+            Glad.dx = -Glad.dx;
+            Good.dy = -Good.dy;
+            Glad.dy = -Glad.dy;
+            Good.isAlive = false;
+        }
+        if (Good.hitbox.intersects(DieHard.hitbox)) {
+            Good.dx = -Good.dx;
+            DieHard.dx = -DieHard.dx;
+            Good.dy = -Good.dy;
+            DieHard.dy = -DieHard.dy;
+            Good.isAlive = false;
+        }
+        if (Titans.hitbox.intersects(DieHard.hitbox)) {
+            Titans.dx = -Titans.dx;
+            DieHard.dx = -DieHard.dx;
+            Titans.dy = -Titans.dy;
+            DieHard.dy = -DieHard.dy;
+            Good.isAlive = false;
+        }
+        if (Titans.hitbox.intersects(Glad.hitbox)) {
+            Titans.dx = -Titans.dx;
+            Glad.dx = -Glad.dx;
+            Titans.dy = -Titans.dy;
+            Glad.dy = -Glad.dy;
+            Good.isAlive = false;
+        }
+        if (Glad.hitbox.intersects(DieHard.hitbox)) {
+            Glad.dx = -Glad.dx;
+            DieHard.dx = -DieHard.dx;
+            Glad.dy = -Glad.dy;
+            DieHard.dy = -DieHard.dy;
+            Good.isAlive = false;
+        }
+
     }
 	
    //Pauses or sleeps the computer for the amount specified in milliseconds
