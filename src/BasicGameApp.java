@@ -258,7 +258,7 @@ public class BasicGameApp implements Runnable {
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 
       //draw the image of the astronaut
-       // g.drawImage(BackgroundPic, 0, 0, WIDTH, HEIGHT, null);
+       //g.drawImage(BackgroundPic, 0, 0, WIDTH, HEIGHT, null);
         //g.drawImage(cowardsPic, 0, 0, WIDTH, HEIGHT, null);
         g.drawImage(welcomePic, 0, 0, WIDTH, HEIGHT, null);
         //g.drawImage(EntertainedPic, 0, 0, WIDTH, HEIGHT, null);
