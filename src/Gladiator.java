@@ -27,7 +27,7 @@ public class Gladiator {
         xpos = pXpos;
         ypos = pYpos;
         dx =4;
-        dy =2;
+        dy =5;
         width = 60;
         height = 80;
         isAlive = true;
@@ -58,6 +58,10 @@ public class Gladiator {
         ypos = ypos + dy;
         hitbox = new Rectangle(xpos, ypos, width, height);
 
+    }
+    public void stop() {
+        xpos = 888888888;
+        ypos = 888888888;
     }
 
     }

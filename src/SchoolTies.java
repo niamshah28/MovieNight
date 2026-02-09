@@ -30,7 +30,7 @@ public class SchoolTies {
     public SchoolTies(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =1;
+        dx =3;
         dy =5;
         width = 60;
         height = 80;
@@ -64,8 +64,10 @@ public class SchoolTies {
 
     }
 
-
-
+    public void stop() {
+        xpos = 555555555;
+        ypos = 555555555;
+    }
 }
 
 

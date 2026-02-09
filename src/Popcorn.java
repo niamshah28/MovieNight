@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class DieHard {
+public class Popcorn {
 
     //VARIABLE DECLARATION SECTION
     //Here's where you state which variables you are going to use.
@@ -13,6 +13,7 @@ public class DieHard {
     public int height;
     public boolean isAlive;//a boolean to denote if the hero is alive or dead.
     public Rectangle hitbox;
+    public int health;
 
 
     // METHOD DEFINITION SECTION
@@ -23,15 +24,14 @@ public class DieHard {
 
     //This is a SECOND constructor that takes 3 parameters.  This allows us to specify the hero's name and position when we build it.
     // if you put in a String, an int and an int the program will use this constructor instead of the one above.
-    public DieHard(int pXpos, int pYpos) {
+    public Popcorn(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =3;
-        dy =2;
+        dx =2;
+        dy =3;
         width = 60;
         height = 80;
         isAlive = true;
-
     } // constructor
 
     //The move method.  Everytime this is run (or "called") the hero's x position and y position change by dx and dy
@@ -60,10 +60,5 @@ public class DieHard {
         hitbox = new Rectangle(xpos, ypos, width, height);
 
     }
-    public void stop() {
-        xpos = 777777777;
-        ypos = 777777777;
-    }
 
-    }
-
+}

@@ -44,13 +44,15 @@ public class BasicGameApp implements Runnable {
     public Image TitansPic;
     public Image DieHardPic;
     public Image GladPic;
-    public Image cowardsPic;
-    public Image welcomePic;
-    public Image EntertainedPic;
-    public Image MATHPic;
-    public Image dancePic;
+    public Image SchoolBackgroundPic;
+    public Image DieHardBackgroundPic;
+    public Image GladBackgroundPic;
+    public Image GoodBackgroundPic;
+    public Image TitansBackgroundPic;
+    public int BattleCounter;
     public int coinflip;
-
+    public Image AltBackgroundPic;
+    public Image popcornPic;
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
@@ -59,6 +61,7 @@ public class BasicGameApp implements Runnable {
     private Titans Titans;
     private DieHard DieHard;
     private Gladiator Glad;
+    private Popcorn Popcorn;
 
 
 
@@ -86,16 +89,21 @@ public class BasicGameApp implements Runnable {
         TitansPic = Toolkit.getDefaultToolkit().getImage("Titans.jpg");
         DieHardPic = Toolkit.getDefaultToolkit().getImage("DieHard.jpg");
         GladPic = Toolkit.getDefaultToolkit().getImage("Gladiator.jpg");
-        //cowardsPic = Toolkit.getDefaultToolkit().getImage("cowards.gif");
-        //welcomePic = Toolkit.getDefaultToolkit().getImage("welcome.gif");
-        //EntertainedPic = Toolkit.getDefaultToolkit().getImage("Entertained.gif");
-        //MATHPic = Toolkit.getDefaultToolkit().getImage("MATH.gif");
-        //dancePic = Toolkit.getDefaultToolkit().getImage("dance.gif");
+        AltBackgroundPic = Toolkit.getDefaultToolkit().getImage("TV.jpg");
+        popcornPic = Toolkit.getDefaultToolkit().getImage("popcorn.jpg");
+        SchoolBackgroundPic = Toolkit.getDefaultToolkit().getImage("cowards.gif");
+        DieHardBackgroundPic = Toolkit.getDefaultToolkit().getImage("welcome.gif");
+        GladBackgroundPic = Toolkit.getDefaultToolkit().getImage("Entertained.gif");
+        GoodBackgroundPic = Toolkit.getDefaultToolkit().getImage("MATH.gif");
+        TitansBackgroundPic = Toolkit.getDefaultToolkit().getImage("dance.gif");
+        Popcorn = new Popcorn((int) (Math.random()*60 + 700),0);
 		school = new SchoolTies((int) (Math.random()*80 + 600),100);
         Good = new GoodWill((int) (Math.random()*8 + 200),200);
         Titans = new Titans((int) (Math.random()*20 + 400),300);
         DieHard = new DieHard((int) (Math.random()*4 + 554),400);
         Glad = new Gladiator((int) (Math.random()*7 + 6),500);
+
+        BattleCounter = 0;
 
 	}// BasicGameApp()
 
@@ -127,6 +135,7 @@ public class BasicGameApp implements Runnable {
         Titans.move();
         DieHard.move();
         Glad.move();
+        Popcorn.move();
         crashing();
 
 	}
@@ -139,11 +148,14 @@ public class BasicGameApp implements Runnable {
             Good.dy = -Good.dy;
             coinflip = (int) (Math.random() * 2) + 1;
             if(coinflip == 1) {
-                school.isAlive = false;
+                school.stop();
+                AltBackgroundPic = GoodBackgroundPic;
             }
             if(coinflip == 2) {
-                Good.isAlive = false;
+                Good.stop();
+                AltBackgroundPic = SchoolBackgroundPic;
             }
+            BattleCounter = BattleCounter + 1;
         }
         if (school.hitbox.intersects(Titans.hitbox)){
             school.dx = -school.dx;
@@ -152,11 +164,14 @@ public class BasicGameApp implements Runnable {
             Titans.dy = -Titans.dy;
             coinflip = (int) (Math.random() * 2) + 1;
             if(coinflip == 1) {
-                school.isAlive = false;
+                school.stop();
+                AltBackgroundPic = TitansBackgroundPic;
             }
             if(coinflip == 2) {
-                Titans.isAlive = false;
+                Titans.stop();
+                AltBackgroundPic = SchoolBackgroundPic;
             }
+            BattleCounter = BattleCounter + 1;
         }
         if (school.hitbox.intersects(Glad.hitbox)) {
             school.dx = -school.dx;
@@ -165,11 +180,14 @@ public class BasicGameApp implements Runnable {
             Glad.dy = -Glad.dy;
             coinflip = (int) (Math.random() * 2) + 1;
             if(coinflip == 1) {
-                school.isAlive = false;
+                school.stop();
+                AltBackgroundPic = GladBackgroundPic;
             }
             if(coinflip == 2) {
-                Glad.isAlive = false;
+                Glad.stop();
+                AltBackgroundPic = SchoolBackgroundPic;
             }
+            BattleCounter = BattleCounter + 1;
         }
         if (school.hitbox.intersects(DieHard.hitbox)) {
             school.dx = -school.dx;
@@ -178,11 +196,14 @@ public class BasicGameApp implements Runnable {
             DieHard.dy = -DieHard.dy;
             coinflip = (int) (Math.random() * 2) + 1;
             if(coinflip == 1) {
-                school.isAlive = false;
+                school.stop();
+                AltBackgroundPic = DieHardBackgroundPic;
             }
             if(coinflip == 2) {
-                DieHard.isAlive = false;
+                DieHard.stop();
+                AltBackgroundPic = SchoolBackgroundPic;
             }
+            BattleCounter = BattleCounter + 1;
         }
         if (Good.hitbox.intersects(Titans.hitbox)) {
             Good.dx = -Good.dx;
@@ -191,11 +212,14 @@ public class BasicGameApp implements Runnable {
             Titans.dy = -Titans.dy;
             coinflip = (int) (Math.random() * 2) + 1;
             if(coinflip == 1) {
-                Good.isAlive = false;
+                Good.stop();
+                AltBackgroundPic = TitansBackgroundPic;
             }
             if(coinflip == 2) {
-                Titans.isAlive = false;
+                Titans.stop();
+                AltBackgroundPic = GoodBackgroundPic;
             }
+            BattleCounter = BattleCounter + 1;
         }
         if (Good.hitbox.intersects(Glad.hitbox)) {
             Good.dx = -Good.dx;
@@ -204,11 +228,14 @@ public class BasicGameApp implements Runnable {
             Glad.dy = -Glad.dy;
             coinflip = (int) (Math.random() * 2) + 1;
             if(coinflip == 1) {
-                Good.isAlive = false;
+                Good.stop();
+               AltBackgroundPic = GladBackgroundPic;
             }
             if(coinflip == 2) {
-                Glad.isAlive = false;
+                Glad.stop();
+                AltBackgroundPic = GoodBackgroundPic;
             }
+            BattleCounter = BattleCounter + 1;
         }
         if (Good.hitbox.intersects(DieHard.hitbox)) {
             Good.dx = -Good.dx;
@@ -217,11 +244,14 @@ public class BasicGameApp implements Runnable {
             DieHard.dy = -DieHard.dy;
             coinflip = (int) (Math.random() * 2) + 1;
             if(coinflip == 1) {
-                Good.isAlive = false;
+                Good.stop();
+                AltBackgroundPic = DieHardBackgroundPic;
             }
             if(coinflip == 2) {
-                DieHard.isAlive = false;
+                DieHard.stop();
+                AltBackgroundPic = GoodBackgroundPic;
             }
+            BattleCounter = BattleCounter + 1;
         }
         if (Titans.hitbox.intersects(DieHard.hitbox)) {
             Titans.dx = -Titans.dx;
@@ -230,11 +260,14 @@ public class BasicGameApp implements Runnable {
             DieHard.dy = -DieHard.dy;
             coinflip = (int) (Math.random() * 2) + 1;
             if(coinflip == 1) {
-                Titans.isAlive = false;
+                Titans.stop();
+                AltBackgroundPic = DieHardBackgroundPic;
             }
             if(coinflip == 2) {
-                DieHard.isAlive = false;
+                DieHard.stop();
+                AltBackgroundPic = TitansBackgroundPic;
             }
+            BattleCounter = BattleCounter + 1;
         }
         if (Titans.hitbox.intersects(Glad.hitbox)) {
             Titans.dx = -Titans.dx;
@@ -243,11 +276,14 @@ public class BasicGameApp implements Runnable {
             Glad.dy = -Glad.dy;
             coinflip = (int) (Math.random() * 2) + 1;
             if(coinflip == 1) {
-                Titans.isAlive = false;
+                Titans.stop();
+                AltBackgroundPic = GladBackgroundPic;
             }
             if(coinflip == 2) {
-                Glad.isAlive = false;
+                Glad.stop();
+                AltBackgroundPic = TitansBackgroundPic;
             }
+            BattleCounter = BattleCounter + 1;
         }
         if (Glad.hitbox.intersects(DieHard.hitbox)) {
             Glad.dx = -Glad.dx;
@@ -256,11 +292,54 @@ public class BasicGameApp implements Runnable {
             DieHard.dy = -DieHard.dy;
             coinflip = (int) (Math.random() * 2) + 1;
             if(coinflip == 1) {
-                Glad.isAlive = false;
+                Glad.stop();
+                AltBackgroundPic = DieHardBackgroundPic;
             }
             if(coinflip == 2) {
-                DieHard.isAlive = false;
+                DieHard.stop();
+                AltBackgroundPic = GladBackgroundPic;
             }
+            BattleCounter = BattleCounter + 1;
+        }
+        if (school.hitbox.intersects(Popcorn.hitbox)){
+            school.dx = -school.dx;
+            Popcorn.dx = -Popcorn.dx;
+            school.dy = -school.dy;
+            Popcorn.dy = -Popcorn.dy;
+            Popcorn.height+=10;
+            Popcorn.width+=10;
+            }
+        if (Popcorn.hitbox.intersects(Titans.hitbox)) {
+            Popcorn.dx = -Popcorn.dx;
+            Titans.dx = -Titans.dx;
+            Popcorn.dy = -Popcorn.dy;
+            Titans.dy = -Titans.dy;
+            Popcorn.height+=10;
+            Popcorn.width+=10;
+        }
+        if (Good.hitbox.intersects(Popcorn.hitbox)){
+            Good.dx = -Good.dx;
+            Popcorn.dx = -Popcorn.dx;
+            Good.dy = -Good.dy;
+            Popcorn.dy = -Popcorn.dy;
+            Popcorn.height+=10;
+            Popcorn.width+=10;
+        }
+        if (Glad.hitbox.intersects(Popcorn.hitbox)){
+            Glad.dx = -Glad.dx;
+            Popcorn.dx = -Popcorn.dx;
+            school.dy = -school.dy;
+            Popcorn.dy = -Popcorn.dy;
+            Popcorn.height+=10;
+            Popcorn.width+=10;
+        }
+        if (DieHard.hitbox.intersects(Popcorn.hitbox)){
+            DieHard.dx = -DieHard.dx;
+            Popcorn.dx = -Popcorn.dx;
+            DieHard.dy = -DieHard.dy;
+            Popcorn.dy = -Popcorn.dy;
+            Popcorn.height+=10;
+            Popcorn.width+=10;
         }
 
     }
@@ -311,46 +390,41 @@ public class BasicGameApp implements Runnable {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 
-      //draw the image of the astronaut
+      //draw the image of the Background GIF
        g.drawImage(BackgroundPic, 0, 0, WIDTH, HEIGHT, null);
-       g.drawImage(cowardsPic, 0, 0, WIDTH, HEIGHT, null);
-       g.drawImage(welcomePic, 0, 0, WIDTH, HEIGHT, null);
-       g.drawImage(EntertainedPic, 0, 0, WIDTH, HEIGHT, null);
-       g.drawImage(MATHPic, 0, 0, WIDTH, HEIGHT, null);
-       g.drawImage(dancePic, 0, 0, WIDTH, HEIGHT, null);
+
+       //g.drawImage(cowardsPic, 0, 0, WIDTH, HEIGHT, null);
+       //g.drawImage(welcomePic, 0, 0, WIDTH, HEIGHT, null);
+       //g.drawImage(EntertainedPic, 0, 0, WIDTH, HEIGHT, null);
+       //g.drawImage(MATHPic, 0, 0, WIDTH, HEIGHT, null);
+       //g.drawImage(dancePic, 0, 0, WIDTH, HEIGHT, null);
+       if(BattleCounter >= 4){
+            BackgroundPic = AltBackgroundPic;
+        }
 
         if(school.isAlive == true){
 		g.drawImage(schoolPic, school.xpos, school.ypos, school.width, school.height, null);
         }
-        else{
-            school = new SchoolTies(1000000000, 1000000000);
-        }
         if(Good.isAlive == true) {
             g.drawImage(GoodPic, Good.xpos, Good.ypos, Good.width, Good.height, null);
-        }
-        else{
-            Good = new GoodWill(1000000000, 1000000000);
         }
         if(Titans.isAlive == true) {
             g.drawImage(TitansPic, Titans.xpos, Titans.ypos, Titans.width, Titans.height, null);
         }
-        else{
-            Titans = new Titans(1000000000, 1000000000);
-        }
         if(DieHard.isAlive == true) {
             g.drawImage(DieHardPic, DieHard.xpos, DieHard.ypos, DieHard.width, DieHard.height, null);
-        }
-        else{
-            DieHard = new DieHard(1000000000, 1000000000);
         }
         if(Glad.isAlive == true) {
             g.drawImage(GladPic, Glad.xpos, Glad.ypos, Glad.width, Glad.height, null);
         }
-        else{
-            Glad = new Gladiator(10000000, 1000000000);
+        if(Popcorn.isAlive == true) {
+            g.drawImage(popcornPic, Popcorn.xpos, Popcorn.ypos, Popcorn.width, Popcorn.height, null);
         }
+       
 
-		g.dispose();
+
+
+        g.dispose();
 
 		bufferStrategy.show();
 	}

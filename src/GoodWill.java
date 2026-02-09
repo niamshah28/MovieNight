@@ -26,8 +26,8 @@ public class GoodWill {
     public GoodWill(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =5;
-        dy =4;
+        dx =1;
+        dy =6;
         width = 60;
         height = 80;
         isAlive = true;
@@ -58,5 +58,9 @@ public class GoodWill {
         ypos = ypos + dy;
         hitbox = new Rectangle(xpos, ypos, width, height);
 
+    }
+    public void stop() {
+        xpos = 999999999;
+        ypos = 999999999;
     }
 }

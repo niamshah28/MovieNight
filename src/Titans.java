@@ -26,8 +26,8 @@ public class Titans {
     public Titans(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =3;
-        dy =2;
+        dx =4;
+        dy =3;
         width = 60;
         height = 80;
         isAlive = true;
@@ -59,6 +59,10 @@ public class Titans {
         ypos = ypos + dy;
         hitbox = new Rectangle(xpos, ypos, width, height);
 
+    }
+    public void stop() {
+        xpos = 666666666;
+        ypos = 666666666;
     }
 
     }
