@@ -30,8 +30,8 @@ public class SchoolTies {
     public SchoolTies(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =3;
-        dy =5;
+        dx =2;
+        dy =3;
         width = 60;
         height = 80;
         isAlive = true;

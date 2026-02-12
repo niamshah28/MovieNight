@@ -26,8 +26,8 @@ public class DieHard {
     public DieHard(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =3;
-        dy =2;
+        dx =2;
+        dy =6;
         width = 60;
         height = 80;
         isAlive = true;

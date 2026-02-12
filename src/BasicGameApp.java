@@ -38,12 +38,14 @@ public class BasicGameApp implements Runnable {
    public JPanel panel;
    
 	public BufferStrategy bufferStrategy;
+    //the following are the images for the movies
 	public Image schoolPic;
     public Image BackgroundPic;
     public Image GoodPic;
     public Image TitansPic;
     public Image DieHardPic;
     public Image GladPic;
+    //the following are the images for the background image to play the movies
     public Image SchoolBackgroundPic;
     public Image DieHardBackgroundPic;
     public Image GladBackgroundPic;
@@ -96,14 +98,15 @@ public class BasicGameApp implements Runnable {
         GladBackgroundPic = Toolkit.getDefaultToolkit().getImage("Entertained.gif");
         GoodBackgroundPic = Toolkit.getDefaultToolkit().getImage("MATH.gif");
         TitansBackgroundPic = Toolkit.getDefaultToolkit().getImage("dance.gif");
-        Popcorn = new Popcorn((int) (Math.random()*60 + 700),0);
-		school = new SchoolTies((int) (Math.random()*80 + 600),100);
-        Good = new GoodWill((int) (Math.random()*8 + 200),200);
-        Titans = new Titans((int) (Math.random()*20 + 400),300);
-        DieHard = new DieHard((int) (Math.random()*4 + 554),400);
-        Glad = new Gladiator((int) (Math.random()*7 + 6),500);
+        // The following decides where the movies will "spawn" in
+        Popcorn = new Popcorn((int) (Math.random()*644 + 700),0);
+		school = new SchoolTies((int) (Math.random()*455 + 600),100);
+        Good = new GoodWill((int) (Math.random()*644 + 200),200);
+        Titans = new Titans((int) (Math.random()*670 + 400),300);
+        DieHard = new DieHard((int) (Math.random()*700 + 554),400);
+        Glad = new Gladiator((int) (Math.random()*100 + 6),500);
 
-        BattleCounter = 0;
+
 
 	}// BasicGameApp()
 
@@ -140,16 +143,16 @@ public class BasicGameApp implements Runnable {
 
 	}
     public void crashing(){
-        // check to see if my astros crash into each other
+        // check to see if my movies crash into each other
         if(school.hitbox.intersects(Good.hitbox)){
             school.dx = -school.dx;
             Good.dx = -Good.dx;
             school.dy = -school.dy;
             Good.dy = -Good.dy;
-            coinflip = (int) (Math.random() * 2) + 1;
+            coinflip = (int) (Math.random() * 2) + 1; //decides which movie dies at random
             if(coinflip == 1) {
                 school.stop();
-                AltBackgroundPic = GoodBackgroundPic;
+                AltBackgroundPic = GoodBackgroundPic;//changes background to the corresponding background
             }
             if(coinflip == 2) {
                 Good.stop();
@@ -301,7 +304,8 @@ public class BasicGameApp implements Runnable {
             }
             BattleCounter = BattleCounter + 1;
         }
-        if (school.hitbox.intersects(Popcorn.hitbox)){
+        if (school.hitbox.intersects(Popcorn.hitbox)&& Popcorn.isCrashing == false){ // makes the popcorn larger when a movie hit it
+            Popcorn.isCrashing = true;
             school.dx = -school.dx;
             Popcorn.dx = -Popcorn.dx;
             school.dy = -school.dy;
@@ -309,7 +313,8 @@ public class BasicGameApp implements Runnable {
             Popcorn.height+=10;
             Popcorn.width+=10;
             }
-        if (Popcorn.hitbox.intersects(Titans.hitbox)) {
+        if (Popcorn.hitbox.intersects(Titans.hitbox)&& Popcorn.isCrashing == false) {
+            Popcorn.isCrashing = true;
             Popcorn.dx = -Popcorn.dx;
             Titans.dx = -Titans.dx;
             Popcorn.dy = -Popcorn.dy;
@@ -317,7 +322,8 @@ public class BasicGameApp implements Runnable {
             Popcorn.height+=10;
             Popcorn.width+=10;
         }
-        if (Good.hitbox.intersects(Popcorn.hitbox)){
+        if (Good.hitbox.intersects(Popcorn.hitbox)&& Popcorn.isCrashing == false){
+            Popcorn.isCrashing = true;
             Good.dx = -Good.dx;
             Popcorn.dx = -Popcorn.dx;
             Good.dy = -Good.dy;
@@ -325,7 +331,8 @@ public class BasicGameApp implements Runnable {
             Popcorn.height+=10;
             Popcorn.width+=10;
         }
-        if (Glad.hitbox.intersects(Popcorn.hitbox)){
+        if (Glad.hitbox.intersects(Popcorn.hitbox)&& Popcorn.isCrashing == false){
+            Popcorn.isCrashing = true;
             Glad.dx = -Glad.dx;
             Popcorn.dx = -Popcorn.dx;
             school.dy = -school.dy;
@@ -333,7 +340,8 @@ public class BasicGameApp implements Runnable {
             Popcorn.height+=10;
             Popcorn.width+=10;
         }
-        if (DieHard.hitbox.intersects(Popcorn.hitbox)){
+        if (DieHard.hitbox.intersects(Popcorn.hitbox)&& Popcorn.isCrashing == false){
+            Popcorn.isCrashing = true;
             DieHard.dx = -DieHard.dx;
             Popcorn.dx = -Popcorn.dx;
             DieHard.dy = -DieHard.dy;
@@ -341,7 +349,9 @@ public class BasicGameApp implements Runnable {
             Popcorn.height+=10;
             Popcorn.width+=10;
         }
-
+        if(!Popcorn.hitbox.intersects(school.hitbox) && !Popcorn.hitbox.intersects(Titans.hitbox) && !Popcorn.hitbox.intersects(Good.hitbox) && !Popcorn.hitbox.intersects(Glad.hitbox) && !Popcorn.hitbox.intersects(DieHard.hitbox)){
+            Popcorn.isCrashing = false;
+        }
     }
 	
    //Pauses or sleeps the computer for the amount specified in milliseconds
@@ -398,11 +408,11 @@ public class BasicGameApp implements Runnable {
        //g.drawImage(EntertainedPic, 0, 0, WIDTH, HEIGHT, null);
        //g.drawImage(MATHPic, 0, 0, WIDTH, HEIGHT, null);
        //g.drawImage(dancePic, 0, 0, WIDTH, HEIGHT, null);
-       if(BattleCounter >= 4){
+       if(BattleCounter >= 4){ // This makes the background change when 4 "battles" have happened
             BackgroundPic = AltBackgroundPic;
         }
 
-        if(school.isAlive == true){
+        if(school.isAlive == true){ //All these if statements define how the image is drawn
 		g.drawImage(schoolPic, school.xpos, school.ypos, school.width, school.height, null);
         }
         if(Good.isAlive == true) {

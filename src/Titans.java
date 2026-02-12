@@ -26,7 +26,7 @@ public class Titans {
     public Titans(int pXpos, int pYpos) {
         xpos = pXpos;
         ypos = pYpos;
-        dx =4;
+        dx =2;
         dy =3;
         width = 60;
         height = 80;

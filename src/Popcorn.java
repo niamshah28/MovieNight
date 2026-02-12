@@ -13,6 +13,7 @@ public class Popcorn {
     public int height;
     public boolean isAlive;//a boolean to denote if the hero is alive or dead.
     public Rectangle hitbox;
+    public boolean isCrashing;
     public int health;
 
 
@@ -40,18 +41,18 @@ public class Popcorn {
         ypos = ypos + dy;
 
         if(xpos >= 1000-width){ //Right wall
-            dx = -dx;
+            xpos = 0;
         }
 
         if(xpos < 0){ // Left wall
-            dx = -dx;
+            xpos = 1000 - width;
         }
 
         if(ypos < 0){ // Top wall
-            dy=-dy;
+            ypos = 700-height;
         }
-        if (ypos >= 700-height ){ // Bottom wall
-            dy = -dy;
+        if (ypos > 700-height ){ // Bottom wall
+            ypos = 0;
         }
 
 

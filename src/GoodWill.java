@@ -27,7 +27,7 @@ public class GoodWill {
         xpos = pXpos;
         ypos = pYpos;
         dx =1;
-        dy =6;
+        dy =3;
         width = 60;
         height = 80;
         isAlive = true;
